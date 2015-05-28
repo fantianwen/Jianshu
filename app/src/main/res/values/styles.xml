@@ -1,0 +1,48 @@
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+
+
+    </style>
+
+
+    <!-- 适用toolbar的准备条件：不需要actionbar和title这样的属性 -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+
+        <!-- status bar color-->
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <!-- actionbar color-->
+        <item name="colorPrimary">@color/primary</item>
+
+        <!-- window color-->
+        <item name="android:windowBackground">@color/windowbackground</item>
+
+        <!-- 设置style为非actionbar的样式，以及window不显示title为toolbar提供条件-->
+        <item name="windowActionBar">false</item>
+
+        <item name="android:windowNoTitle">true</item>
+
+    </style>
+
+
+    <color name="primaryColor">#99FF6100</color>
+    <color name="primary">#FF6100</color>
+    <color name="textPrimary">#FFF</color>
+    <color name="windowbackground">#FFF</color>
+    <color name="navigationBarColor">#C0C0C0</color>
+    <color name="light_black">#77000000</color>
+    <color name="lightblack">#55000000</color>
+    <color name="failure_gray">#232323</color>
+
+    <color name="light_orange">#66EE5500</color>
+    <color name="user_des_color">#77000000</color>
+
+
+
+    <!-- 进入最初的进度条样式 -->
+    <style name="progress.jianshu" parent="android:Widget.Holo.ProgressBar.Small">
+        <item name="android:progressDrawable">@drawable/jianshu_pro</item>
+    </style>
+    <!-- 进入最初的进度条的样式-->
+
+</resources>

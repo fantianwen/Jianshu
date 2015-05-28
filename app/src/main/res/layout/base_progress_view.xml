@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="50dp"
+    android:gravity="center_horizontal">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/bg"
+        app:border_color="#FF000000"
+        app:border_width="0dp" />
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="@style/progress.jianshu"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="30dp" />
+
+</RelativeLayout>
