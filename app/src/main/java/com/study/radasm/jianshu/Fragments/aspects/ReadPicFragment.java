@@ -1,6 +1,7 @@
 package com.study.radasm.jianshu.Fragments.aspects;
 
 
+import android.os.SystemClock;
 import android.view.View;
 
 import com.study.radasm.jianshu.Enums.LoadStatus;
@@ -32,6 +33,7 @@ public class ReadPicFragment extends BaseNetFragment {
 
     @Override
     protected LoadStatus visitWeb() {
+        SystemClock.sleep(4000);
         return LoadStatus.LOAD_FAILURE;
     }
 }

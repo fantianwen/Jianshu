@@ -5,18 +5,19 @@
     android:orientation="vertical">
 
 
-    <com.viewpagerindicator.TabPageIndicator
+
+    <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/indicator"
+        android:background="@mipmap/ab_texture_tile_example"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent">
-    </com.viewpagerindicator.TabPageIndicator>
-
+    </com.viewpagerindicator.TitlePageIndicator>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         />
+
 
 </LinearLayout>

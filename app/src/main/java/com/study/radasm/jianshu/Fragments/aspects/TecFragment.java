@@ -1,5 +1,6 @@
 package com.study.radasm.jianshu.Fragments.aspects;
 
+import android.os.SystemClock;
 import android.view.View;
 
 import com.study.radasm.jianshu.Enums.LoadStatus;
@@ -31,6 +32,7 @@ public class TecFragment extends BaseNetFragment {
 
     @Override
     protected LoadStatus visitWeb() {
+        SystemClock.sleep(2000);
         return LoadStatus.LOAD_FAILURE;
     }
 }

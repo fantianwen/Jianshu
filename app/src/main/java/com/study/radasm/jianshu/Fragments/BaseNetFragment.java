@@ -1,5 +1,7 @@
 package com.study.radasm.jianshu.Fragments;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -23,6 +25,31 @@ public abstract class BaseNetFragment extends BaseFragment {
 
 
     private FrameLayout mFrameLayout;
+    private NetHandler mNetHandler;
+
+    private class NetHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            LoadStatus status = (LoadStatus) msg.obj;
+            int status_code = status.getStatus_code();
+            switch (status_code){
+                case 1://success
+                    mFrameLayout.removeAllViews();
+                    mFrameLayout.addView(loadSuccessView());
+                    break;
+                case 2://failure
+                    mFrameLayout.removeAllViews();
+                    mFrameLayout.addView(loadFailureView());
+                    break;
+                case 3://unknown
+                    mFrameLayout.removeAllViews();
+                    mFrameLayout.addView(loadUnknownView());
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     public BaseNetFragment(){
         super();
@@ -32,35 +59,31 @@ public abstract class BaseNetFragment extends BaseFragment {
 
     @Override
     protected View initView() {
+        mNetHandler=new NetHandler();
         mFrameLayout = new FrameLayout(getActivity());
 
         mFrameLayout.addView(previousView());
-        mFrameLayout.addView(netAfterView());
+        netAfterView();
 
         return mFrameLayout;
     }
 
 
     /**访问网络之后获取的View*/
-    private View netAfterView() {
-        View netAfterView=null;
-        LoadStatus loadStatus = visitWeb();
+    private void netAfterView() {
 
-        int status_code = loadStatus.getStatus_code();
-        switch (status_code){
-            case 1://success
-                netAfterView=loadSuccessView();
-                break;
-            case 2://failure
-                netAfterView=loadFailureView();
-                break;
-            case 3://unknown
-                netAfterView=loadUnknownView();
-                break;
-            default:
-                break;
-        }
-        return netAfterView;
+        new Thread(){
+            @Override
+            public void run() {
+                LoadStatus loadStatus = visitWeb();
+
+                Message msg = Message.obtain();
+                msg.obj=loadStatus;
+                mNetHandler.sendMessage(msg);
+
+            }
+        }.start();
+
     }
 
     /**获取不可知*/

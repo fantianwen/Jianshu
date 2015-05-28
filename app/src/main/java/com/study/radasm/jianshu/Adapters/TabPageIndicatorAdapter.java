@@ -17,7 +17,7 @@ import com.study.radasm.jianshu.Fragments.aspects.WorldFragment;
  */
 public class TabPageIndicatorAdapter extends FragmentPagerAdapter {
     private Context context;
-    private static final String[] ASPECT_TITLE = {"全部","世间事","读图","生活家","科技"};
+    private static final String[] ASPECT_TITLE = new String[]{"全部","世间事","读图","生活家","科技"};
 
     public TabPageIndicatorAdapter(FragmentManager fm) {
         super(fm);

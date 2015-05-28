@@ -1,6 +1,9 @@
 package com.study.radasm.jianshu.Fragments.aspects;
 
 
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.view.View;
 
 import com.study.radasm.jianshu.Enums.LoadStatus;
@@ -26,6 +29,15 @@ public class AllFragment extends BaseNetFragment {
         return allFragment;
     }
 
+
+    private class MyHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+
+        }
+    }
+
+
     @Override
     protected View loadSuccessView() {
         return null;
@@ -33,6 +45,7 @@ public class AllFragment extends BaseNetFragment {
 
     @Override
     protected LoadStatus visitWeb() {
+        SystemClock.sleep(4000);
         return LoadStatus.LOAD_FAILURE;
     }
 }
