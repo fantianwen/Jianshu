@@ -1,13 +1,12 @@
 package com.study.radasm.jianshu.Fragments.aspects;
 
 
-import android.os.Handler;
-import android.os.Message;
 import android.os.SystemClock;
 import android.view.View;
 
 import com.study.radasm.jianshu.Enums.LoadStatus;
 import com.study.radasm.jianshu.Fragments.BaseNetFragment;
+import com.study.radasm.jianshu.Models.NetResult;
 
 /**
  * Created by RadAsm on 15/5/27.
@@ -30,12 +29,7 @@ public class AllFragment extends BaseNetFragment {
     }
 
 
-    private class MyHandler extends Handler{
-        @Override
-        public void handleMessage(Message msg) {
-
-        }
-    }
+    private NetResult netResult;
 
 
     @Override
@@ -44,8 +38,10 @@ public class AllFragment extends BaseNetFragment {
     }
 
     @Override
-    protected LoadStatus visitWeb() {
+    protected NetResult visitWeb() {
         SystemClock.sleep(4000);
-        return LoadStatus.LOAD_FAILURE;
+        netResult=new NetResult();
+        netResult.loadStatus=LoadStatus.LOAD_FAILURE;
+        return netResult;
     }
 }

@@ -10,7 +10,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-import com.study.radasm.jianshu.Enums.LoadStatus;
+import com.study.radasm.jianshu.Models.NetResult;
 import com.study.radasm.jianshu.R;
 import com.study.radasm.jianshu.common.ViewUtils;
 
@@ -23,15 +23,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public abstract class BaseNetFragment extends BaseFragment {
 
-
     private FrameLayout mFrameLayout;
     private NetHandler mNetHandler;
 
     private class NetHandler extends Handler{
         @Override
         public void handleMessage(Message msg) {
-            LoadStatus status = (LoadStatus) msg.obj;
-            int status_code = status.getStatus_code();
+            NetResult result = (NetResult) msg.obj;
+            int status_code = result.loadStatus.getStatus_code();
             switch (status_code){
                 case 1://success
                     mFrameLayout.removeAllViews();
@@ -75,10 +74,10 @@ public abstract class BaseNetFragment extends BaseFragment {
         new Thread(){
             @Override
             public void run() {
-                LoadStatus loadStatus = visitWeb();
+                NetResult netResult = visitWeb();
 
                 Message msg = Message.obtain();
-                msg.obj=loadStatus;
+                msg.obj=netResult;
                 mNetHandler.sendMessage(msg);
 
             }
@@ -99,10 +98,12 @@ public abstract class BaseNetFragment extends BaseFragment {
 
     protected abstract View loadSuccessView();
 
-    protected abstract LoadStatus visitWeb();
+    protected abstract NetResult visitWeb();
 
 
-
+    /**
+     * ===========================进度条动画==========================
+     */
 
     private View previousView() {
         View previousView = ViewUtils.inflate(getActivity(), R.layout.base_progress_view);
@@ -111,10 +112,6 @@ public abstract class BaseNetFragment extends BaseFragment {
         return previousView;
     }
 
-
-    /**
-     * ************************************************
-     */
     private CircleImageView bg;
     private ProgressBar pb;
     private ScaleAnimation scaleAnimation;
@@ -148,8 +145,6 @@ public abstract class BaseNetFragment extends BaseFragment {
 
             }
         });
-
-
     }
 
     private void initAnimation() {

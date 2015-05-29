@@ -38,11 +38,38 @@
     <color name="user_des_color">#77000000</color>
 
 
-
     <!-- 进入最初的进度条样式 -->
     <style name="progress.jianshu" parent="android:Widget.Holo.ProgressBar.Small">
         <item name="android:progressDrawable">@drawable/jianshu_pro</item>
     </style>
     <!-- 进入最初的进度条的样式-->
+
+    <!-- tabpageIndivator的样式-->
+
+    <style name="MyTheme" parent="AppTheme.Base">
+        <item name="vpiTabPageIndicatorStyle">@style/MyWidget.TabPageIndicator</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:animationDuration">5000</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="MyWidget.TabPageIndicator" parent="Widget">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/light_black</item>
+        <item name="android:paddingLeft">22dip</item>
+        <item name="android:paddingRight">22dip</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAppearance">@style/MyTextAppearance.TabPageIndicator</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="MyTextAppearance.TabPageIndicator" parent="Widget">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@drawable/seletor_tab_text</item>
+    </style>
+
+    <!-- tabpageIndivator的样式-->
 
 </resources>

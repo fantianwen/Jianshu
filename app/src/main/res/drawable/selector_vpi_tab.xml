@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 没有被选中，不可见状态-->
+    <item android:state_focused="false" android:state_enabled="false" android:state_pressed="false" android:drawable="@android:color/holo_purple"/>
+
+    <!-- 可见，但是没有被按压-->
+    <item android:state_focused="false" android:state_enabled="true" android:state_pressed="false" android:drawable="@android:color/holo_orange_light"/>
+
+    <!-- 可见，被按压-->
+    <item android:state_focused="false" android:state_enabled="true" android:state_pressed="true" android:drawable="@android:color/holo_red_light"/>
+
+    <!-- 当前页面状态-->
+    <item android:state_focused="true" android:state_enabled="true" android:state_pressed="false" android:drawable="@android:color/holo_blue_light"/>
+
+
+</selector>

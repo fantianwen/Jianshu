@@ -6,12 +6,14 @@ import android.view.View;
 
 import com.study.radasm.jianshu.Enums.LoadStatus;
 import com.study.radasm.jianshu.Fragments.BaseNetFragment;
+import com.study.radasm.jianshu.Models.NetResult;
 
 /**
  * Created by RadAsm on 15/5/27.
  */
 public class ReadPicFragment extends BaseNetFragment {
     private static ReadPicFragment readPicFragment;
+
 
     public ReadPicFragment() {
 
@@ -26,14 +28,18 @@ public class ReadPicFragment extends BaseNetFragment {
         return readPicFragment;
     }
 
+    private NetResult netResult;
+
     @Override
     protected View loadSuccessView() {
         return null;
     }
 
     @Override
-    protected LoadStatus visitWeb() {
+    protected NetResult visitWeb() {
         SystemClock.sleep(4000);
-        return LoadStatus.LOAD_FAILURE;
+        netResult=new NetResult();
+        netResult.loadStatus=LoadStatus.LOAD_FAILURE;
+        return netResult;
     }
 }

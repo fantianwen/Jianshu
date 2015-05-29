@@ -6,18 +6,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.study.radasm.jianshu.Fragments.BaseNetFragment;
-import com.study.radasm.jianshu.Fragments.aspects.AllFragment;
-import com.study.radasm.jianshu.Fragments.aspects.LiveFragment;
-import com.study.radasm.jianshu.Fragments.aspects.ReadPicFragment;
-import com.study.radasm.jianshu.Fragments.aspects.TecFragment;
-import com.study.radasm.jianshu.Fragments.aspects.WorldFragment;
+import com.study.radasm.jianshu.Fragments.FragmentFactory;
 
 /**
  * Created by RadAsm on 15/5/27.
  */
 public class TabPageIndicatorAdapter extends FragmentPagerAdapter {
     private Context context;
-    private static final String[] ASPECT_TITLE = new String[]{"全部","世间事","读图","生活家","科技"};
+    private static final String[] ASPECT_TITLE = new String[]{"全部", "世间事", "读图", "生活家", "科技"};
 
     public TabPageIndicatorAdapter(FragmentManager fm) {
         super(fm);
@@ -25,27 +21,8 @@ public class TabPageIndicatorAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        BaseNetFragment baseNetFragment = null;
-        switch (position){
-            case 0:
-                baseNetFragment= AllFragment.getInstance();
-                break;
-            case 1:
-                baseNetFragment= WorldFragment.getInstance();
-                break;
-            case 2:
-                baseNetFragment= ReadPicFragment.getInstance();
-                break;
-            case 3:
-                baseNetFragment= LiveFragment.getInstance();
-                break;
-            case 4:
-                baseNetFragment= TecFragment.getInstance();
-                break;
-            default:
-                break;
-        }
-
+        int transPosition = position + 0x0010;
+        BaseNetFragment baseNetFragment = (BaseNetFragment) FragmentFactory.getInstance().createFragment(transPosition);
         return baseNetFragment;
     }
 

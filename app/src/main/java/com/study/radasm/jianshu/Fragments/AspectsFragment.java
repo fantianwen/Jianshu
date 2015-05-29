@@ -6,7 +6,7 @@ import android.view.View;
 import com.study.radasm.jianshu.Adapters.TabPageIndicatorAdapter;
 import com.study.radasm.jianshu.R;
 import com.study.radasm.jianshu.common.ViewUtils;
-import com.viewpagerindicator.TitlePageIndicator;
+import com.viewpagerindicator.TabPageIndicator;
 
 /**
  * Created by RadAsm on 15/5/27.
@@ -33,7 +33,7 @@ public class AspectsFragment extends BaseFragment{
     }
 
 
-    private TitlePageIndicator indicator;
+    private TabPageIndicator indicator;
     private ViewPager pager;
 
 
@@ -41,7 +41,7 @@ public class AspectsFragment extends BaseFragment{
     protected View initView() {
         View view = ViewUtils.inflate(getActivity(), R.layout.base_view_aspects);
 
-        indicator = (TitlePageIndicator) view.findViewById(R.id.indicator);
+        indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
         pager = (ViewPager) view.findViewById(R.id.pager);
 
         tabPageIndicatorAdapter=new TabPageIndicatorAdapter(getFragmentManager());

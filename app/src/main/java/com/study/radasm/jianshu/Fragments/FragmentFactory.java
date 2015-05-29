@@ -42,7 +42,7 @@ public class FragmentFactory implements AbstractFragmentFactory {
     public BaseFragment createFragment(int position) {
         BaseFragment baseFragment=null;
         switch (position){
-
+            /**main*/
             case ASPECTS:
                 baseFragment=AspectsFragment.getInstance();
                 break;
@@ -52,9 +52,9 @@ public class FragmentFactory implements AbstractFragmentFactory {
             case SUBSCRIPTION:
                 baseFragment=SubscriptionFragment.getInstance();
                 break;
+            /**main*/
 
-
-
+            /**Aspects*/
             case ASPECT_ALL:
                 baseFragment= AllFragment.getInstance();
                 break;
@@ -70,6 +70,7 @@ public class FragmentFactory implements AbstractFragmentFactory {
             case ASPECT_READPIC:
                 baseFragment= ReadPicFragment.getInstance();
                 break;
+            /**Aspects*/
             default:
                 break;
         }
