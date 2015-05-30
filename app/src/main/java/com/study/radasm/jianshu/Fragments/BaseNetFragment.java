@@ -34,7 +34,7 @@ public abstract class BaseNetFragment extends BaseFragment {
             switch (status_code){
                 case 1://success
                     mFrameLayout.removeAllViews();
-                    mFrameLayout.addView(loadSuccessView());
+                    mFrameLayout.addView(loadSuccessView(result));
                     break;
                 case 2://failure
                     mFrameLayout.removeAllViews();
@@ -96,7 +96,7 @@ public abstract class BaseNetFragment extends BaseFragment {
         return failureView;
     }
 
-    protected abstract View loadSuccessView();
+    protected abstract View loadSuccessView(NetResult result);
 
     protected abstract NetResult visitWeb();
 

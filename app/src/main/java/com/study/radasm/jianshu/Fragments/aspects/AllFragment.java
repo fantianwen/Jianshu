@@ -33,7 +33,7 @@ public class AllFragment extends BaseNetFragment {
 
 
     @Override
-    protected View loadSuccessView() {
+    protected View loadSuccessView(NetResult result) {
         return null;
     }
 

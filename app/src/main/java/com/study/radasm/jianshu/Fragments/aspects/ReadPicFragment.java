@@ -31,7 +31,7 @@ public class ReadPicFragment extends BaseNetFragment {
     private NetResult netResult;
 
     @Override
-    protected View loadSuccessView() {
+    protected View loadSuccessView(NetResult result) {
         return null;
     }
 
