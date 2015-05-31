@@ -25,39 +25,40 @@ public abstract class BaseNetFragment extends BaseFragment {
 
     private FrameLayout mFrameLayout;
     private NetHandler mNetHandler;
+    private NetTask mNetTask;
+    private boolean isRunning;
 
     private class NetHandler extends Handler{
         @Override
         public void handleMessage(Message msg) {
             NetResult result = (NetResult) msg.obj;
             int status_code = result.loadStatus.getStatus_code();
-            switch (status_code){
-                case 1://success
-                    mFrameLayout.removeAllViews();
-                    mFrameLayout.addView(loadSuccessView(result));
-                    break;
-                case 2://failure
-                    mFrameLayout.removeAllViews();
-                    mFrameLayout.addView(loadFailureView());
-                    break;
-                case 3://unknown
-                    mFrameLayout.removeAllViews();
-                    mFrameLayout.addView(loadUnknownView());
-                    break;
-                default:
-                    break;
+            if(isRunning){
+                switch (status_code){
+                    case 1://success
+                        mFrameLayout.removeAllViews();
+                        mFrameLayout.addView(loadSuccessView(result));
+                        break;
+                    case 2://failure
+                        mFrameLayout.removeAllViews();
+                        mFrameLayout.addView(loadFailureView());
+                        break;
+                    case 3://unknown
+                        mFrameLayout.removeAllViews();
+                        mFrameLayout.addView(loadUnknownView());
+                        break;
+                    default:
+                        break;
+                }
             }
+
         }
     }
-
-    public BaseNetFragment(){
-        super();
-    }
-
 
 
     @Override
     protected View initView() {
+        mNetTask=new NetTask();
         mNetHandler=new NetHandler();
         mFrameLayout = new FrameLayout(getActivity());
 
@@ -70,20 +71,28 @@ public abstract class BaseNetFragment extends BaseFragment {
 
     /**访问网络之后获取的View*/
     private void netAfterView() {
-
-        new Thread(){
-            @Override
-            public void run() {
-                NetResult netResult = visitWeb();
-
-                Message msg = Message.obtain();
-                msg.obj=netResult;
-                mNetHandler.sendMessage(msg);
-
-            }
-        }.start();
-
+        isRunning=true;
+        if(isRunning){
+            new Thread(mNetTask).start();
+        }
     }
+
+    private class NetTask implements Runnable{
+
+        @Override
+        public void run() {
+            NetResult netResult = visitWeb();
+
+            Message msg = Message.obtain();
+            msg.obj=netResult;
+            mNetHandler.sendMessage(msg);
+        }
+    }
+
+    private void stopNetTask(){
+        isRunning=false;
+    }
+
 
     /**获取不可知*/
     private View loadUnknownView() {
@@ -101,12 +110,18 @@ public abstract class BaseNetFragment extends BaseFragment {
     protected abstract NetResult visitWeb();
 
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopNetTask();
+    }
+
     /**
      * ===========================进度条动画==========================
      */
 
     private View previousView() {
-        View previousView = ViewUtils.inflate(getActivity(), R.layout.base_progress_view);
+        View previousView = ViewUtils.inflate(getActivity(),R.layout.base_progress_view);
         initPreviousView(previousView);
 
         return previousView;

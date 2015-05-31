@@ -39,7 +39,7 @@ public class AspectsFragment extends BaseFragment{
 
     @Override
     protected View initView() {
-        View view = ViewUtils.inflate(getActivity(), R.layout.base_view_aspects);
+        View view = ViewUtils.inflate(getActivity(),R.layout.base_view_aspects);
 
         indicator = (TabPageIndicator) view.findViewById(R.id.indicator);
         pager = (ViewPager) view.findViewById(R.id.pager);
